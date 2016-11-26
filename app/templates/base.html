@@ -9,7 +9,20 @@
 </head>
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<div class="mdl-grid">
+<div class="mdl-cell mdl-cell--10-col">
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }} </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endwith %}   
 {% block body %}{% endblock %}
+</div>
+</div>
 </div>
 </body>
 </html>

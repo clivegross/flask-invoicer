@@ -3,11 +3,27 @@
 <h1>Sign In</h1>
 <form action="" method="post" name="login">
     {{ form.hidden_tag() }}
-    <p>
-    Email<br>
-    {{ form.email(size=80) }}<br>
-    </p>
-    <p>{{ form.remember_me }} Remember Me</p>
-    <p><input type="submit" value="Sign In"></p>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    {{ form.email(class_="mdl-textfield__input") }}
+    <label class="mdl-textfield__label" for="email">Email...</label>
+    </div>
+    {% for error in form.email.errors %}
+        <br><span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    <br>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    {{ form.password(class_="mdl-textfield__input") }}
+    <label class="mdl-textfield__label" for="password">Password...</label>
+    </div>
+    {% for error in form.password.errors %}
+        <br><span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    <br>
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="remember_me">
+    {{ form.remember_me(class="mdl-checkbox__input") }}
+    <span class="mdl-checkbox__label">Remember Me</span>
+    </label>
+    <br>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">Sign in</button>
 </form>
 {% endblock %}
