@@ -1,15 +1,24 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_security import Security
+from flask_mail import Mail
 
 app = Flask(__name__)
+
+# import configuration settings
 app.config.from_object('config')
+
+# setup database
 db = SQLAlchemy(app)
 
-from app import views, models
+# Setup mail
+mail = Mail(app)
 
-# @app.route("/")
-# def main():
-#    return "Welcome!"
+from app import views, models
+from app.models import user_datastore
+
+# setup security
+security = Security(app, user_datastore)
 
 if __name__ == "__main__":
     app.run()
