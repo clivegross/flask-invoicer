@@ -7,10 +7,10 @@ DEBUG = True
 
 # email settings
 emailjson = 'email.json'
+email_json_path = datadir + '//' + emailjson
 
 with open(email_json_path, 'r') as f:
-email_json_path = datadir + '//' + emailjson
-    email_dict = json.loads(f.read())
+    email = json.loads(f.read())
 
 
 # def get_config(config, category, key):
