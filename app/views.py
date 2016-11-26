@@ -1,6 +1,7 @@
 from flask import render_template, flash, redirect
 from app import app
 from .forms import LoginForm
+from flask_weasyprint import HTML, render_pdf
 
 @app.route('/')
 @app.route('/index')
@@ -18,3 +19,9 @@ def login():
         'login.html',
         form=form
     )
+
+@app.route('/index.pdf')
+def doc_pdf():
+    html = render_template('index.html')
+    return render_pdf(HTML(string=html))
+
